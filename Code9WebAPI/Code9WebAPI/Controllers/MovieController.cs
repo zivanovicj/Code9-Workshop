@@ -2,7 +2,6 @@
 using Code9.Domain.Models;
 using Code9.Domain.Queries;
 using Code9WebAPI.Models;
-using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
