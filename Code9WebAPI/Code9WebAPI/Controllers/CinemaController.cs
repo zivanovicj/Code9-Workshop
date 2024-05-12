@@ -13,12 +13,10 @@ namespace Code9WebAPI.Controllers
     public class CinemaController : ControllerBase
     {
         private readonly IMediator _mediator;
-        private readonly IValidator<AddCinemaRequest> _validator;
 
-        public CinemaController(IMediator mediator, IValidator<AddCinemaRequest> validationRules)
+        public CinemaController(IMediator mediator)
         {
             _mediator = mediator;
-            _validator = validationRules;
         }
 
         [HttpGet]
@@ -32,13 +30,6 @@ namespace Code9WebAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Cinema>> AddCinema(AddCinemaRequest addCinemaRequest)
         {
-            var validationResult = _validator.Validate(addCinemaRequest);
-            
-            if (!validationResult.IsValid)
-            {
-                return BadRequest(validationResult.Errors);
-            }
-
             var addCinemaCommand = new AddCinemaCommand
             {
                 Name = addCinemaRequest.Name,

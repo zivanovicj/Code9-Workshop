@@ -4,6 +4,7 @@ using Code9.Infrastructure;
 using Code9.Infrastructure.Repositories;
 using Code9WebAPI.Validators;
 using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +20,7 @@ builder.Services.AddMediatR(config => config.RegisterServicesFromAssembly(typeof
 
 builder.Services.AddControllers();
 
+builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssemblyContaining<AddCinemaValidator>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
